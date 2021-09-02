@@ -14,7 +14,7 @@ export class AuthService {
 
     async login(userDto: CreateUserDto) {
         const user = await this.validateUser(userDto)
-        const role = await this.roleService.getRoleByValue('ADMIN')
+        const role = await this.roleService.getRoleByValue('ADMIN')/////////////////////////////////////////////////////
         user.UserRoles = role
         
         console.log(user)
