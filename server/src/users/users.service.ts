@@ -47,11 +47,11 @@ export class UsersService {
         })
         const role = await this.roleService.getRoleByValue(dto.value)
         if (user && role){
-            console.log(role)
-            console.log(role[0])
+            // console.log(role)
+            // console.log(role[0])
             
             user[0].UserRoles = role
-            console.log(user[0].UserRoles[0])
+            // console.log(user[0].UserRoles[0])
             return dto
             
         }
