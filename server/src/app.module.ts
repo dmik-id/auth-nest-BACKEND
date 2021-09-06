@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from "./roles/roles.model";
 import { AuthModule } from './auth/auth.module';
+require('dotenv').config()
 
 
 @Module({
