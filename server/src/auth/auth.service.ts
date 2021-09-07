@@ -17,7 +17,7 @@ export class AuthService {
         const role = await this.roleService.getRoleByValue('ADMIN')/////////////////////////////////////////////////////
         user.UserRoles = role
         
-        console.log(user)
+        // console.log(user)
         return this.generateToken(user)
     }
 
@@ -34,6 +34,11 @@ export class AuthService {
         return this.generateToken(user)
 
     }
+    // async check(userDto: CreateUserDto) {
+    //     const user = await this.userService.getUserByEmail(userDto.email)
+
+
+    // }
 
 
     private async generateToken(user:User){
