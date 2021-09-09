@@ -5,19 +5,22 @@ import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcryptjs'
 import { User } from 'src/users/users.model';
 import { RolesService } from 'src/roles/roles.service';
+import { Repository } from 'typeorm';
 @Injectable()
 export class AuthService {
     constructor(private userService:UsersService,
+        // private usersRepository: Repository<User>,
         private jwtService: JwtService,
         private roleService: RolesService){}
 
 
     async login(userDto: CreateUserDto) {
         const user = await this.validateUser(userDto)
-        const role = await this.roleService.getRoleByValue('ADMIN')/////////////////////////////////////////////////////
-        user.UserRoles = role
+        // const role = await this.usersRepository.find()
+        // console.log(role)
+        // user.UserRoles = role
         
-        // console.log(user)
+        console.log(user)
         return this.generateToken(user)
     }
 
@@ -55,7 +58,7 @@ export class AuthService {
         
         const passwordEquals = await bcrypt.compare(userDto.password, user[0].password);
         if (user[0] && passwordEquals) {
-            // console.log(user)///////////////////////////////////////
+            console.log(user)
             return user[0];
         }
         throw new UnauthorizedException({message: 'некорректный email или password'})  

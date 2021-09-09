@@ -10,6 +10,8 @@ export class RolesService {
     constructor(
         @InjectRepository(Role)
         private rolesRepository: Repository<Role>,
+        
+        // private user_roleRepository: Repository<user_user_roles_role>
     ) {}
 
 
