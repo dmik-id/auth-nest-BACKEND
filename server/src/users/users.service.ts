@@ -1,10 +1,10 @@
 import {  HttpException, HttpStatus, Injectable, Options} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './users.model';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
+import { User } from './users.model';
 
 
 @Injectable()
@@ -29,6 +29,7 @@ export class UsersService {
 
     async getAllUsers(){
         const users = await this.usersRepository.find()///////////////////////get role??
+        // console.log(users)
         return users 
     }
 
@@ -50,7 +51,7 @@ export class UsersService {
 
         
             user[0].UserRoles = role
-            console.log(user[0].UserRoles)
+           
     
             return dto
             
@@ -58,9 +59,9 @@ export class UsersService {
         throw new HttpException('Пользователь или пароль не найдены', HttpStatus.NOT_FOUND)
 
     }
-    async getRoleByUserId(userId:number){
-        const role = await this.usersRepository.find()
-        return(role)
-    }
+    // async getRoleByUserId(userId:number){
+    //     const role = await this.usersRepository.find()
+    //     return(role)
+    // }
 
 }

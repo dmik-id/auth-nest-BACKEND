@@ -16,11 +16,11 @@ export class AuthService {
 
     async login(userDto: CreateUserDto) {
         const user = await this.validateUser(userDto)
-        // const role = await this.usersRepository.find()
-        // console.log(role)
+        // const role = await this.userService.getRoleByUserId(user.id)
+ 
         // user.UserRoles = role
         
-        console.log(user)
+
         return this.generateToken(user)
     }
 
@@ -30,7 +30,6 @@ export class AuthService {
         if (candidate[0]){
             throw new HttpException('пользователь с таким email уже существует', HttpStatus.BAD_REQUEST)
         }
-        console.log('j')
         const hashPassword = await bcrypt.hash(userDto.password, 5);
         const user = await this.userService.createUser({...userDto, password:hashPassword})
         // console.log(user)/////////////////////////////////
@@ -58,7 +57,6 @@ export class AuthService {
         
         const passwordEquals = await bcrypt.compare(userDto.password, user[0].password);
         if (user[0] && passwordEquals) {
-            console.log(user)
             return user[0];
         }
         throw new UnauthorizedException({message: 'некорректный email или password'})  

@@ -13,16 +13,15 @@ export class RolesGuard implements CanActivate{
 
 
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-        const req = context.switchToHttp().getRequest()
-        const authHeader = req.headers.authorization
-        console.log(context.switchToHttp().getRequest())
+
+
 
 
         try{
             const requireRoles = this. reflector.getAllAndOverride(ROLES_KEY, [
                 context.getHandler(),
                 context.getClass(),
-            ])
+            ]) 
 
             if (!requireRoles){
 
