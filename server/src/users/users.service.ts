@@ -5,6 +5,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { AddRoleDto } from './dto/add-role.dto';
 import { User } from './users.model';
+import * as bcrypt from 'bcryptjs'
 
 
 @Injectable()
@@ -59,9 +60,15 @@ export class UsersService {
         throw new HttpException('Пользователь или пароль не найдены', HttpStatus.NOT_FOUND)
 
     }
-    // async getRoleByUserId(userId:number){
-    //     const role = await this.usersRepository.find()
-    //     return(role)
-    // }
+    async resertPassword(dto:CreateUserDto){
+        const email = dto.email
+        const user = await this.usersRepository.find({where: {email}})
+        const hashPassword = await bcrypt.hash(dto.password, 5)
+        user[0].password = hashPassword
+        this.usersRepository.save(user)
+        return dto.password
+        
+    }
+
 
 }

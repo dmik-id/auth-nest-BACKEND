@@ -44,6 +44,12 @@ export class UsersController {
         return this.usersService.addRole(dto)
     }
 
+    @ApiOperation({summary: 'resert password'})
+    @Post('/resert')
+    resertPassword(@Body() dto:CreateUserDto){
+        return this.usersService.resertPassword(dto)
+    }
+
 
 
 
