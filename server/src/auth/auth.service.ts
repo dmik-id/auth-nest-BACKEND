@@ -16,7 +16,7 @@ export class AuthService {
 
     async login(userDto: CreateUserDto) {
         const user = await this.validateUser(userDto)
-        // const role = await this.userService.getRoleByUserId(user.id)
+        // const role = 
  
         // user.UserRoles = role
         
@@ -61,6 +61,7 @@ export class AuthService {
         }
         throw new UnauthorizedException({message: 'некорректный email или password'})  
     }
+
 }
 
 
