@@ -1,12 +1,14 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { User } from "./users/users.model";
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from "./roles/roles.model";
 import { AuthModule } from './auth/auth.module';
+import { GraphQLModule } from "@nestjs/graphql";
+import { NotesModule } from './notes/notes.module';
+
 require('dotenv').config()
 
 
@@ -14,6 +16,9 @@ require('dotenv').config()
     controllers:[],
     providers:[],
     imports:[  
+        GraphQLModule.forRoot({
+            autoSchemaFile: true,
+        }),
         ConfigModule.forRoot({
             envFilePath : `.${process.env.NODE_ENV}.env`, 
         }),
@@ -27,7 +32,7 @@ require('dotenv').config()
         entities: [User, Role],
         synchronize: true,
         autoLoadEntities: true,
-      }), UsersModule, RolesModule, AuthModule]
+      }), UsersModule, RolesModule, AuthModule, NotesModule]
 
 })
 
