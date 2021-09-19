@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from 'src/users/users.model';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, ManyToOne } from 'typeorm';
 
 // interface UserCreationAttrs{
 //     email : string,
@@ -21,6 +21,7 @@ export class Role{
 
     @Column()
     description: string;
+
 
 
 }

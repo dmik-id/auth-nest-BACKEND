@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Note } from 'src/notes/models/note';
 import { Role } from 'src/roles/roles.model';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
 
 interface UserCreationAttrs{
     email : string,
@@ -25,5 +26,13 @@ export class User{
     @ManyToMany(() => Role)
     @JoinTable()
     UserRoles : Role[]
+
+    @OneToMany(() => Note, note => note.id)
+    @JoinTable()
+    UserNote : Note[]
+
+
+
+
 
 }

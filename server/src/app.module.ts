@@ -8,6 +8,7 @@ import { Role } from "./roles/roles.model";
 import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from "@nestjs/graphql";
 import { NotesModule } from './notes/notes.module';
+import { Note } from "./notes/models/note";
 
 require('dotenv').config()
 
@@ -29,7 +30,7 @@ require('dotenv').config()
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
-        entities: [User, Role],
+        entities: [User, Role, Note],
         synchronize: true,
         autoLoadEntities: true,
       }), UsersModule, RolesModule, AuthModule, NotesModule]

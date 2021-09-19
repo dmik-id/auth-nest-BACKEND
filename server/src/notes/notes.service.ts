@@ -26,6 +26,7 @@ export class NotesService {
             ...createNoteData
         }
         console.log(note)
+        console.log(Date.now())
         note.title = createNoteData.title || ''
         note.fullText = createNoteData.fullText || ''
         note.author = createNoteData.author || ''
