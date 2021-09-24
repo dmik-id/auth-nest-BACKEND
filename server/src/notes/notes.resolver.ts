@@ -1,6 +1,6 @@
 
 import { Resolver,Query, Args, Mutation } from '@nestjs/graphql';
-import { GetNoteArgs } from './dto/args/get-note.args';
+
 import { CreateNoteInput } from './dto/input/create-note.input';
 import { Note } from './models/note';
 import { NotesService } from './notes.service';
