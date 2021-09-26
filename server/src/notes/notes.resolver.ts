@@ -10,7 +10,7 @@ export class NotesResolver {
 
     constructor(private notesService: NotesService){}
 
-    @Query(() => [Note], {name: 'note'})
+    @Query(() => [Note], {name: 'getAllNote'})
     getNote():Promise<Note[]> {
         return this.notesService.getNotes()
        
