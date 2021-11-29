@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from "@nestjs/graphql";
 import { NotesModule } from './notes/notes.module';
 import { Note } from "./notes/models/note";
+import { FileModule } from './file/file.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 require('dotenv').config()
 
@@ -20,6 +22,11 @@ require('dotenv').config()
         GraphQLModule.forRoot({
             autoSchemaFile: true,
         }),
+
+        MulterModule.register({
+            dest: './files',
+          }),
+
         ConfigModule.forRoot({
             envFilePath : `.${process.env.NODE_ENV}.env`, 
         }),
@@ -33,7 +40,7 @@ require('dotenv').config()
         entities: [User, Role, Note],
         synchronize: true,
         autoLoadEntities: true,
-      }), UsersModule, RolesModule, AuthModule, NotesModule]
+      }), UsersModule, RolesModule, AuthModule, NotesModule, FileModule]
 
 })
 
